@@ -1,0 +1,1513 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="Tidiane Konaté - Création d'applications mobiles et de sites web personnalisés.">
+
+<title>Tidiane Konaté | TK DIGITAL</title>
+
+<style>
+:root {
+    --bg: #07111f;
+    --panel: #101f32;
+    --text: #eef6ff;
+    --muted: #a9bad0;
+    --cyan: #35d6d0;
+    --blue: #568cff;
+    --purple: #9b78ff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(7,17,31,.95);
+    border-bottom: 1px solid #ffffff18;
+}
+
+.nav {
+    max-width: 1200px;
+    margin: auto;
+    padding: 15px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.brand {
+    font-size: 22px;
+    font-weight: 900;
+}
+
+.brand span {
+    color: var(--cyan);
+}
+
+.navlinks {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.navlinks a {
+    padding: 9px 12px;
+    color: var(--muted);
+    border-radius: 10px;
+}
+
+.navlinks a:hover,
+.navlinks a.active {
+    background: #35d6d020;
+    color: var(--cyan);
+}
+
+.soundbtn,
+.menuBtn {
+    background: var(--panel);
+    color: white;
+    border: 1px solid #ffffff20;
+    padding: 10px 13px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.menuBtn {
+    display: none;
+}
+
+.page {
+    display: none;
+    min-height: 75vh;
+    animation: enter .5s ease;
+}
+
+.page.active {
+    display: block;
+}
+
+@keyframes enter {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.wrap {
+    max-width: 1160px;
+    margin: auto;
+    padding: 65px 22px;
+}
+
+.hero {
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    align-items: center;
+    gap: 45px;
+    min-height: 650px;
+}
+
+.eyebrow {
+    color: var(--cyan);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 13px;
+}
+
+.hero h1 {
+    font-size: clamp(40px, 6vw, 82px);
+    line-height: 1.05;
+    margin: 20px 0;
+}
+
+.gradient {
+    background: linear-gradient(90deg, var(--cyan), #8daaff, var(--purple));
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.lead {
+    font-size: 18px;
+    color: var(--muted);
+}
+
+.actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 28px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 13px 20px;
+    border-radius: 12px;
+    font-weight: bold;
+    border: 1px solid #ffffff20;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.btn.primary {
+    background: linear-gradient(110deg, #1ebeb9, #557eff);
+    color: #061321;
+    border: 0;
+}
+
+.btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px #0007;
+}
+
+.visual {
+    position: relative;
+    min-height: 450px;
+    display: grid;
+    place-items: center;
+}
+
+.orb {
+    position: absolute;
+    width: 340px;
+    height: 340px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #35d6d044, #9b78ff44);
+    animation: float 6s infinite;
+}
+
+.device {
+    position: relative;
+    width: 290px;
+    height: 440px;
+    border: 8px solid #263d58;
+    border-radius: 38px;
+    background: #101f32;
+    box-shadow: 0 35px 80px #0009;
+    transform: rotate(-7deg);
+    padding: 15px;
+}
+
+.screen {
+    height: 100%;
+    border-radius: 25px;
+    background: #0d2034;
+    padding: 18px;
+}
+
+.appcard {
+    margin-top: 25px;
+    padding: 17px;
+    border-radius: 17px;
+    background: linear-gradient(120deg, #1b8d91, #566ee2);
+}
+
+.minirow {
+    display: flex;
+    gap: 9px;
+    margin-top: 13px;
+}
+
+.mini {
+    height: 68px;
+    flex: 1;
+    border-radius: 12px;
+    background: #ffffff17;
+}
+
+.chart {
+    height: 100px;
+    margin-top: 16px;
+    background: linear-gradient(180deg, #35d6d033, transparent);
+    border-bottom: 2px solid var(--cyan);
+}
+
+@keyframes float {
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+.floatTag {
+    position: absolute;
+    padding: 12px 16px;
+    border-radius: 14px;
+    background: #172b43;
+    border: 1px solid #ffffff20;
+    box-shadow: 0 20px 40px #0005;
+    font-weight: bold;
+}
+
+.tag1 {
+    top: 45px;
+    right: 0;
+}
+
+.tag2 {
+    bottom: 45px;
+    left: 0;
+}
+
+.sectionHead {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 38px;
+}
+
+.sectionHead h2 {
+    font-size: clamp(30px, 4vw, 50px);
+    line-height: 1.1;
+}
+
+.sectionHead p {
+    color: var(--muted);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.card {
+    background: linear-gradient(145deg, #142941, #0c1b2c);
+    border: 1px solid #ffffff15;
+    border-radius: 20px;
+    padding: 24px;
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-7px);
+    border-color: var(--cyan);
+}
+
+.icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, #1a777b, #4d5eaa);
+    font-size: 25px;
+}
+
+.card p,
+.muted {
+    color: var(--muted);
+}
+
+.pill {
+    display: inline-block;
+    border: 1px solid #ffffff20;
+    border-radius: 30px;
+    padding: 5px 10px;
+    margin: 4px;
+    color: #b9d5ed;
+    font-size: 12px;
+}
+
+.split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: center;
+}
+
+.featurebox {
+    padding: 28px;
+    border-radius: 22px;
+    background: linear-gradient(135deg, #102b40, #211e48);
+    border: 1px solid #ffffff20;
+}
+
+.steps {
+    display: grid;
+    gap: 14px;
+}
+
+.step {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+    padding: 16px;
+    border-bottom: 1px solid #ffffff20;
+}
+
+.num {
+    flex: 0 0 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: #1b7779;
+    font-weight: bold;
+}
+
+.mockups {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.mock {
+    min-height: 270px;
+    border-radius: 20px;
+    padding: 17px;
+    background: linear-gradient(145deg, #172e49, #0a1727);
+    border: 1px solid #ffffff20;
+}
+
+.mocktop {
+    height: 12px;
+    width: 45%;
+    background: var(--cyan);
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.mockline {
+    height: 9px;
+    background: #ffffff18;
+    border-radius: 20px;
+    margin: 10px 0;
+}
+
+.mockline.short {
+    width: 60%;
+}
+
+.mocktiles {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 9px;
+    margin-top: 18px;
+}
+
+.tile {
+    height: 75px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #236f79, #5155a4);
+}
+
+.mocklabel {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 14px;
+}
+
+.form {
+    display: grid;
+    gap: 13px;
+}
+
+.form input,
+.form textarea,
+.form select {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    background: #091827;
+    color: white;
+    border: 1px solid #ffffff20;
+}
+
+.form textarea {
+    min-height: 130px;
+}
+
+.faq details {
+    padding: 18px;
+    border-bottom: 1px solid #ffffff20;
+}
+
+.faq summary {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.faq p {
+    color: var(--muted);
+}
+
+.footer {
+    border-top: 1px solid #ffffff20;
+    padding: 30px;
+    text-align: center;
+    color: var(--muted);
+}
+
+.footer strong {
+    color: var(--cyan);
+}
+
+.notice {
+    font-size: 13px;
+    color: #91a9c2;
+}
+
+@media(max-width:850px) {
+
+    .hero,
+    .split {
+        grid-template-columns: 1fr;
+    }
+
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .nav {
+        flex-wrap: wrap;
+    }
+
+    .menuBtn {
+        display: inline-block;
+    }
+
+    .navlinks {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .navlinks.open {
+        display: flex;
+    }
+}
+
+@media(max-width:560px) {
+
+    .grid,
+    .mockups {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 43px;
+    }
+
+    .visual {
+        min-height: 390px;
+    }
+
+    .device {
+        height: 390px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+<nav class="nav">
+
+<a class="brand" href="#accueil">
+TK<span>.</span> DIGITAL
+</a>
+
+<button class="menuBtn" id="menuBtn">☰</button>
+
+<button class="soundbtn" id="soundBtn">
+♫ Activer le son
+</button>
+
+<div class="navlinks" id="navlinks">
+
+<a href="#accueil" class="active">Accueil</a>
+<a href="#apropos">À propos</a>
+<a href="#services">Services</a>
+<a href="#applications">Applications</a>
+<a href="#design">UX/UI Design</a>
+<a href="#methode">Méthode</a>
+<a href="#faq">FAQ</a>
+<a href="#contact">Contact</a>
+
+</div>
+</nav>
+</header>
+
+<main>
+
+<!-- PAGE ACCUEIL -->
+
+<section class="page active" id="accueil">
+
+<div class="wrap hero">
+
+<div>
+
+<span class="eyebrow">
+● Création numérique sur mesure
+</span>
+
+<h1>
+Vos idées méritent une
+<span class="gradient">application.</span>
+</h1>
+
+<p class="lead">
+Je suis <strong>Tidiane Konaté</strong>.
+
+Je conçois des applications mobiles et des solutions web personnalisées pour transformer vos idées en outils numériques simples, modernes et utiles.
+</p>
+
+<div class="actions">
+
+<a class="btn primary" href="#contact">
+Parlons de votre projet →
+</a>
+
+<a class="btn" href="#applications">
+Découvrir les possibilités
+</a>
+
+</div>
+
+</div>
+
+<div class="visual">
+
+<div class="orb"></div>
+
+<div class="device">
+
+<div class="screen">
+
+<div style="display:flex;justify-content:space-between">
+<b>MON ESPACE</b>
+<span>● ● ●</span>
+</div>
+
+<div class="appcard">
+<h3>Bienvenue 👋</h3>
+<p>Votre activité organisée simplement.</p>
+</div>
+
+<div class="minirow">
+<div class="mini"></div>
+<div class="mini"></div>
+</div>
+
+<div class="chart"></div>
+
+<div class="mockline"></div>
+<div class="mockline short"></div>
+
+<div class="minirow">
+<div class="mini"></div>
+<div class="mini"></div>
+</div>
+
+</div>
+</div>
+
+<div class="floatTag tag1">
+✦ Design moderne
+</div>
+
+<div class="floatTag tag2">
+⌁ Sur mesure
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- PAGE A PROPOS -->
+
+<section class="page" id="apropos">
+
+<div class="wrap">
+
+<div class="sectionHead">
+
+<span class="eyebrow">Qui suis-je ?</span>
+
+<h2>
+Un partenaire pour donner vie à vos idées
+</h2>
+
+<p>
+Le numérique doit résoudre des problèmes concrets.
+Mon objectif est de comprendre votre besoin et de proposer une expérience adaptée.
+</p>
+
+</div>
+
+<div class="split">
+
+<div class="featurebox">
+
+<div class="icon">👨🏽‍💻</div>
+
+<h2>Tidiane Konaté</h2>
+
+<p class="muted">
+Créateur d'applications personnalisées.
+Conception de solutions web et mobiles.
+Design UX/UI.
+</p>
+
+<p>
+Vous avez une idée, une activité ou une organisation à améliorer ?
+Nous pouvons imaginer ensemble un outil qui vous correspond.
+</p>
+
+<span class="pill">Écoute</span>
+<span class="pill">Créativité</span>
+<span class="pill">Simplicité</span>
+<span class="pill">Sur mesure</span>
+
+</div>
+
+<div>
+
+<h3>Ma vision</h3>
+
+<p class="muted">
+Créer des outils faciles à comprendre, agréables à utiliser et utiles au quotidien.
+</p>
+
+<h3>Ce qui compte dans chaque projet</h3>
+
+<ul class="muted">
+<li>Comprendre votre problème.</li>
+<li>Organiser les fonctionnalités.</li>
+<li>Soigner l'apparence.</li>
+<li>Adapter la solution aux appareils ciblés.</li>
+</ul>
+
+<a class="btn primary" href="#contact">
+Présenter mon idée →
+</a>
+
+</div>
+</div>
+</div>
+</section>
+
+<!-- PAGE SERVICES -->
+
+<section class="page" id="services">
+
+<div class="wrap">
+
+<div class="sectionHead">
+
+<span class="eyebrow">Mes services</span>
+
+<h2>
+Des services numériques adaptés à vos besoins
+</h2>
+
+<p>
+Chaque projet est différent.
+Les fonctionnalités, le design et le fonctionnement sont définis avec vous.
+</p>
+
+</div>
+
+<div class="grid">
+
+<div class="card">
+<div class="icon">📱</div>
+<h3>Applications Android</h3>
+<p>
+Applications mobiles pour gérer une activité, faciliter un service ou accompagner vos utilisateurs.
+</p>
+</div>
+
+<div class="card">
+<div class="icon">🌐</div>
+<h3>Sites web</h3>
+<p>
+Sites vitrines, plateformes éducatives et sites professionnels responsives.
+</p>
+</div>
+
+<div class="card">
+<div class="icon">🎨</div>
+<h3>Design UX/UI</h3>
+<p>
+Maquettes d'écrans, parcours utilisateur, couleurs et interfaces modernes.
+</p>
+</div>
+
+<div class="card">
+<div class="icon">📊</div>
+<h3>Gestion et organisation</h3>
+<p>
+Outils de suivi, tableaux de bord, gestion de clients, élèves ou stocks.
+</p>
+</div>
+
+<div class="card">
+<div class="icon">📄</div>
+<h3>Documents et exports</h3>
+<p>
+Génération de rapports, reçus, fiches et documents PDF.
+</p>
+</div>
+
+<div class="card">
+<div class="icon">⚙️</div>
+<h3>Automatisation</h3>
+<p>
+Réduction des tâches répétitives grâce à des fonctions automatiques.
+</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- PAGE APPLICATIONS -->
+
+<section class="page" id="applications">
+
+<div class="wrap">
+
+<div class="sectionHead">
+
+<span class="eyebrow">Mes idées de création</span>
+
+<h2>
+Quel type d'application imaginez-vous ?
+</h2>
+
+<p>
+Voici des exemples de projets possibles.
+Les visuels sont des maquettes illustratives et non des réalisations déjà livrées.
+</p>
+
+</div>
+
+<div class="grid">
+
+<div class="card">
+<div class="icon">🏫</div>
+<h3>Application scolaire</h3>
+<p>
+Gestion des élèves, notes, moyennes, bulletins, matières, classes et exports.
+</p>
+<span class="pill">Éducation</span>
+<span class="pill">PDF</span>
+</div>
+
+<div class="card">
+<div class="icon">🧾</div>
+<h3>Gestion commerciale</h3>
+<p>
+Clients, ventes, factures, dépenses et historique des opérations.
+</p>
+<span class="pill">Commerce</span>
+</div>
+
+<div class="card">
+<div class="icon">📦</div>
+<h3>Gestion de stock</h3>
+<p>
+Entrées et sorties, alertes, inventaire et rapports.
+</p>
+</div>
+
+<div class="card">
+<div class="icon">🩺</div>
+<h3>Rendez-vous</h3>
+<p>
+Prise de rendez-vous, calendrier, fiches et rappels.
+</p>
+</div>
+
+<div class="card">
+<div class="icon">🚌</div>
+<h3>Transport et livraison</h3>
+<p>
+Suivi des commandes, demandes de course et informations clients.
+</p>
+</div>
+
+<div class="card">
+<div class="icon">🤝</div>
+<h3>Association</h3>
+<p>
+Membres, cotisations, activités et événements.
+</p>
+</div>
+
+<div class="card">
+<div class="icon">📚</div>
+<h3>Formation en ligne</h3>
+<p>
+Cours, modules, exercices et progression des apprenants.
+</p>
+</div>
+
+<div class="card">
+<div class="icon">🏠</div>
+<h3>Immobilier</h3>
+<p>
+Catalogue de biens, demandes et suivi des contacts.
+</p>
+</div>
+
+<div class="card">
+<div class="icon">🔋</div>
+<h3>Applications utilitaires</h3>
+<p>
+Calculateurs, suivi de batterie, gestion de tâches et notes.
+</p>
+</div>
+
+</div>
+
+<div class="sectionHead" style="margin-top:65px">
+
+<h2>Exemples de maquettes d'interfaces</h2>
+
+<p>
+Quelques idées de présentation visuelle pour vos futures applications.
+</p>
+
+</div>
+
+<div class="mockups">
+
+<div class="mock">
+
+<div class="mocktop"></div>
+
+<h3>Tableau de bord</h3>
+
+<div class="mockline"></div>
+<div class="mockline short"></div>
+
+<div class="mocktiles">
+<div class="tile"></div>
+<div class="tile"></div>
+</div>
+
+<p class="mocklabel">Exemple : application de gestion</p>
+
+</div>
+
+<div class="mock">
+
+<div class="mocktop"></div>
+
+<h3>Liste et suivi</h3>
+
+<div class="mockline"></div>
+<div class="mockline"></div>
+<div class="mockline short"></div>
+<div class="mockline"></div>
+
+<p class="mocklabel">Exemple : espace de travail</p>
+
+</div>
+
+<div class="mock">
+
+<div class="mocktop"></div>
+
+<h3>Profil utilisateur</h3>
+
+<div style="width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#35d6d0,#9b78ff);margin:15px auto"></div>
+
+<div class="mockline"></div>
+<div class="mockline short"></div>
+
+<p class="mocklabel">Exemple : compte personnel</p>
+
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- PAGE DESIGN -->
+
+<section class="page" id="design">
+
+<div class="wrap">
+
+<div class="sectionHead">
+
+<span class="eyebrow">UX / UI Design</span>
+
+<h2>
+Une belle interface doit aussi être facile à utiliser
+</h2>
+
+<p>
+Le design aide les utilisateurs à comprendre quoi faire et à trouver rapidement ce qu'ils cherchent.
+</p>
+
+</div>
+
+<div class="grid">
+
+<div class="card">
+<div class="icon">🧭</div>
+<h3>UX — Expérience utilisateur</h3>
+<p>
+Étudier les besoins, organiser les menus et simplifier les étapes.
+</p>
+</div>
+
+<div class="card">
+<div class="icon">🖌️</div>
+<h3>UI — Interface utilisateur</h3>
+<p>
+Créer des écrans harmonieux avec des boutons visibles et une bonne hiérarchie.
+</p>
+</div>
+
+<div class="card">
+<div class="icon">📐</div>
+<h3>Responsive design</h3>
+<p>
+Adapter l'affichage aux téléphones, tablettes et ordinateurs.
+</p>
+</div>
+
+</div>
+
+<div class="featurebox" style="margin-top:25px">
+
+<h3>Les éléments que nous pouvons définir ensemble</h3>
+
+<span class="pill">Logo</span>
+<span class="pill">Couleurs</span>
+<span class="pill">Typographie</span>
+<span class="pill">Navigation</span>
+<span class="pill">Maquettes</span>
+<span class="pill">Icônes</span>
+<span class="pill">Accessibilité</span>
+
+</div>
+
+</div>
+</section>
+
+<!-- PAGE METHODE -->
+
+<section class="page" id="methode">
+
+<div class="wrap">
+
+<div class="sectionHead">
+
+<span class="eyebrow">Ma méthode de travail</span>
+
+<h2>
+De votre idée à une solution concrète
+</h2>
+
+<p>
+Un processus clair pour construire le bon produit.
+</p>
+
+</div>
+
+<div class="split">
+
+<div class="steps">
+
+<div class="step">
+<span class="num">1</span>
+<div>
+<h3>Échange et compréhension</h3>
+<p class="muted">
+Vous expliquez votre idée, vos objectifs et vos utilisateurs.
+</p>
+</div>
+</div>
+
+<div class="step">
+<span class="num">2</span>
+<div>
+<h3>Définition des fonctionnalités</h3>
+<p class="muted">
+Nous établissons les pages, les actions et les priorités.
+</p>
+</div>
+</div>
+
+<div class="step">
+<span class="num">3</span>
+<div>
+<h3>Maquette et design</h3>
+<p class="muted">
+Nous définissons l'apparence et la navigation.
+</p>
+</div>
+</div>
+
+<div class="step">
+<span class="num">4</span>
+<div>
+<h3>Création et vérification</h3>
+<p class="muted">
+La solution est construite puis testée.
+</p>
+</div>
+</div>
+
+<div class="step">
+<span class="num">5</span>
+<div>
+<h3>Livraison et accompagnement</h3>
+<p class="muted">
+Les modalités de livraison et d'assistance sont convenues.
+</p>
+</div>
+</div>
+
+</div>
+
+<div class="featurebox">
+
+<h2>Votre projet commence par une conversation.</h2>
+
+<p class="muted">
+Vous n'avez pas besoin de connaître le vocabulaire technique.
+Expliquez simplement ce que vous voulez améliorer.
+</p>
+
+<a class="btn primary" href="#contact">
+Décrire mon projet →
+</a>
+
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- PAGE FAQ -->
+
+<section class="page" id="faq">
+
+<div class="wrap">
+
+<div class="sectionHead">
+
+<span class="eyebrow">FAQ</span>
+
+<h2>
+Questions fréquentes
+</h2>
+
+</div>
+
+<div class="faq featurebox">
+
+<details open>
+
+<summary>
+Puis-je demander une application selon mes idées ?
+</summary>
+
+<p>
+Oui. Le projet peut être défini autour de vos besoins et des fonctionnalités souhaitées.
+</p>
+
+</details>
+
+<details>
+
+<summary>
+Peut-on créer une application sans Internet ?
+</summary>
+
+<p>
+Certaines applications peuvent fonctionner hors ligne.
+Cela doit être prévu dès le début du projet.
+</p>
+
+</details>
+
+<details>
+
+<summary>
+Peut-on créer un site et une application mobile ?
+</summary>
+
+<p>
+Oui, selon les objectifs, on peut prévoir un site web, une application mobile ou les deux.
+</p>
+
+</details>
+
+<details>
+
+<summary>
+Combien coûte une application ?
+</summary>
+
+<p>
+Le coût dépend des fonctionnalités, du nombre d'écrans et de la complexité.
+</p>
+
+</details>
+
+<details>
+
+<summary>
+Comment présenter mon idée ?
+</summary>
+
+<p>
+Décrivez simplement le problème que vous voulez résoudre et les personnes concernées.
+</p>
+
+</details>
+
+</div>
+</div>
+</section>
+
+<!-- PAGE CONTACT -->
+
+<section class="page" id="contact">
+
+<div class="wrap">
+
+<div class="sectionHead">
+
+<span class="eyebrow">Contact</span>
+
+<h2>
+Parlons de votre prochaine application
+</h2>
+
+<p>
+Présentez votre idée en quelques lignes.
+</p>
+
+</div>
+
+<div class="split">
+
+<div class="featurebox">
+
+<h2>Votre idée peut devenir un projet.</h2>
+
+<p class="muted">
+Que vous soyez entrepreneur, enseignant, responsable d'association ou porteur d'une idée, parlons de votre projet.
+</p>
+
+<p>✉️ E-mail : À compléter</p>
+
+<p>📱 WhatsApp : Numéro à configurer</p>
+
+<p>📍 Mali</p>
+
+<p class="notice">
+Remplacez les coordonnées par vos vraies informations avant de publier le site.
+</p>
+
+</div>
+
+<form class="form" id="contactForm">
+
+<input
+id="nom"
+required
+placeholder="Votre nom"
+>
+
+<input
+id="telephone"
+placeholder="Votre téléphone"
+>
+
+<select id="type">
+
+<option>Type de projet</option>
+<option>Application Android</option>
+<option>Site web</option>
+<option>Design UX/UI</option>
+<option>Outil de gestion</option>
+<option>Autre idée</option>
+
+</select>
+
+<textarea
+id="message"
+required
+placeholder="Décrivez votre idée..."
+></textarea>
+
+<button class="btn primary" type="submit">
+Préparer mon message WhatsApp →
+</button>
+
+<p class="notice" id="formNotice">
+Configurez votre numéro WhatsApp dans le code pour recevoir les demandes.
+</p>
+
+</form>
+
+</div>
+</div>
+</section>
+
+</main>
+
+<footer class="footer">
+
+© <span id="year"></span>
+
+<strong>Tidiane Konaté — TK DIGITAL</strong>
+
+<br>
+
+Création d'applications personnalisées.
+
+<br>
+
+<span class="notice">
+Les exemples d'interfaces présentés sont des maquettes illustratives.
+</span>
+
+</footer>
+
+<script>
+
+// NAVIGATION ENTRE LES PAGES
+
+const pages = document.querySelectorAll(".page");
+
+const links = document.querySelectorAll(".navlinks a");
+
+function showPage() {
+
+    let id = location.hash.slice(1) || "accueil";
+
+    if (!document.getElementById(id) ||
+        !document.getElementById(id).classList.contains("page")) {
+        id = "accueil";
+    }
+
+    pages.forEach(page => {
+        page.classList.toggle("active", page.id === id);
+    });
+
+    links.forEach(link => {
+        link.classList.toggle(
+            "active",
+            link.getAttribute("href") === "#" + id
+        );
+    });
+
+    document.getElementById("navlinks").classList.remove("open");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+window.addEventListener("hashchange", showPage);
+
+showPage();
+
+
+// MENU MOBILE
+
+document.getElementById("menuBtn").addEventListener("click", () => {
+
+    document.getElementById("navlinks").classList.toggle("open");
+
+});
+
+
+// DATE AUTOMATIQUE
+
+document.getElementById("year").textContent =
+new Date().getFullYear();
+
+
+// SON D'AMBIANCE
+
+let audioCtx = null;
+let oscillator = null;
+let soundOn = false;
+
+const soundBtn = document.getElementById("soundBtn");
+
+function stopSound() {
+
+    if (oscillator) {
+        try {
+            oscillator.stop();
+        } catch(e) {}
+        oscillator = null;
+    }
+
+    if (audioCtx) {
+        audioCtx.close();
+        audioCtx = null;
+    }
+
+    soundOn = false;
+
+    soundBtn.textContent = "♫ Activer le son";
+
+}
+
+soundBtn.addEventListener("click", async () => {
+
+    if (soundOn) {
+        stopSound();
+        return;
+    }
+
+    audioCtx = new (
+        window.AudioContext ||
+        window.webkitAudioContext
+    )();
+
+    await audioCtx.resume();
+
+    oscillator = audioCtx.createOscillator();
+
+    const gain = audioCtx.createGain();
+
+    oscillator.type = "sine";
+
+    oscillator.frequency.value = 174.61;
+
+    gain.gain.value = 0.012;
+
+    oscillator.connect(gain);
+
+    gain.connect(audioCtx.destination);
+
+    oscillator.start();
+
+    soundOn = true;
+
+    soundBtn.textContent = "♫ Couper le son";
+
+});
+
+
+// EFFETS SONORES DES BOUTONS
+
+document.querySelectorAll(".btn, .navlinks a").forEach(el => {
+
+    el.addEventListener("click", () => {
+
+        if (!soundOn || !audioCtx) return;
+
+        const oscillator = audioCtx.createOscillator();
+
+        const gain = audioCtx.createGain();
+
+        oscillator.frequency.value = 520;
+
+        gain.gain.setValueAtTime(
+            0.025,
+            audioCtx.currentTime
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+            0.001,
+            audioCtx.currentTime + 0.09
+        );
+
+        oscillator.connect(gain);
+
+        gain.connect(audioCtx.destination);
+
+        oscillator.start();
+
+        oscillator.stop(audioCtx.currentTime + 0.09);
+
+    });
+
+});
+
+
+// FORMULAIRE WHATSAPP
+
+document.getElementById("contactForm").addEventListener("submit", e => {
+
+    e.preventDefault();
+
+    const name = document.getElementById("nom").value;
+
+    const phone = document.getElementById("telephone").value;
+
+    const type = document.getElementById("type").value;
+
+    const message = document.getElementById("message").value;
+
+    const text =
+`Bonjour Tidiane, je m'appelle ${name}.
+Téléphone : ${phone || "Non précisé"}
+Projet : ${type}
+Mon besoin : ${message}`;
+
+    // REMPLACER PAR VOTRE NUMÉRO WHATSAPP
+    // Exemple : 223XXXXXXXX
+
+    const whatsappNumber = "223XXXXXXXX";
+
+    if (whatsappNumber.includes("X")) {
+
+        document.getElementById("formNotice").textContent =
+        "Configurez votre numéro WhatsApp dans le code avant utilisation.";
+
+        return;
+
+    }
+
+    window.open(
+        "https://wa.me/" +
+        whatsappNumber +
+        "?text=" +
+        encodeURIComponent(text),
+        "_blank"
+    );
+
+});
+
+</script>
+
+</body>
+</html>
